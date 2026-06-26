@@ -32,7 +32,7 @@ const QUADRA_1_LANDMARKS: Landmark[] = [
     id: "l1-q1",
     name: "EMERE 02A",
     type: "circle",
-    x: 9.5,
+    x: 4.5,
     y: 2.0,
     width: 6.5,
     height: 9,
@@ -42,27 +42,27 @@ const QUADRA_1_LANDMARKS: Landmark[] = [
     id: "l7-q1",
     name: "EMERE 01D",
     type: "circle",
-    x: 16.5,
-    y: 42.5,
+    x: 17.0,
+    y: 86.0,
     width: 6.5,
-    height: 9,
+    height: 9.5,
     color: "bg-violet-100 text-violet-850 border-violet-300 font-extrabold shadow-sm",
   },
   {
     id: "l8-q1",
     name: "EMERE 01B",
     type: "circle",
-    x: 92.0,
-    y: 2.0,
+    x: 26.0,
+    y: 30.0,
     width: 6.5,
-    height: 9,
+    height: 9.5,
     color: "bg-teal-100 text-teal-850 border-teal-300 font-extrabold shadow-sm",
   },
   {
     id: "l2-q1",
     name: "EMERE 01A",
     type: "circle",
-    x: 34.5,
+    x: 33.0,
     y: 2.0,
     width: 6.5,
     height: 9,
@@ -72,8 +72,8 @@ const QUADRA_1_LANDMARKS: Landmark[] = [
     id: "l3-q1",
     name: "ACESSO QUADRA 2",
     type: "rect",
-    x: 20.0,
-    y: 0.5,
+    x: 17.0,
+    y: 2.0,
     width: 10,
     height: 9,
     color: "bg-emerald-50 text-emerald-800 border-emerald-300",
@@ -82,21 +82,31 @@ const QUADRA_1_LANDMARKS: Landmark[] = [
     id: "l4-q1",
     name: "EMERE 01C",
     type: "circle",
-    x: 16.5,
-    y: 83.2,
+    x: 26.0,
+    y: 58.0,
     width: 6.5,
-    height: 9,
+    height: 9.5,
     color: "bg-amber-100 text-amber-850 border-amber-300 font-extrabold shadow-sm",
   },
   {
     id: "l9-q1",
     name: "SAÍDA QUADRA 1",
     type: "rect",
-    x: 87.8,
+    x: 88.0,
     y: 89.5,
     width: 11.0,
     height: 9,
     color: "bg-emerald-50 text-emerald-800 border-emerald-300",
+  },
+  {
+    id: "l10-q1",
+    name: "PAINEL",
+    type: "rect",
+    x: 93.0,
+    y: 38.0,
+    width: 5.5,
+    height: 24.0,
+    color: "bg-slate-100 text-slate-800 border-slate-300 font-bold",
   },
 ];
 
@@ -424,7 +434,7 @@ export default function TableMap({
           {/* LANDMARKS */}
           {activeLandmarks.map((lm) => {
             const isCircle = lm.type === "circle";
-            const isClickableAccess = lm.name.includes("ACESSO QUADRA");
+            const isClickableAccess = lm.name.includes("ACESSO QUADRA") || lm.name.includes("QUADRA 2") || lm.name.includes("QUADRA 1");
             
             return (
               <div
@@ -457,7 +467,7 @@ export default function TableMap({
                 <span className={`${isCircle ? "text-[7.5px] font-black" : "text-[7.5px] font-extrabold uppercase tracking-tight"} leading-none`}>
                   {lm.name}
                 </span>
-                {isClickableAccess && (
+                {isClickableAccess && !lm.name.toUpperCase().includes("SAÍDA") && !lm.name.toUpperCase().includes("ENTRADA") && (
                   <span className="text-[5.5px] font-bold text-indigo-600 block mt-0.5 animate-pulse uppercase">Clique p/ ir</span>
                 )}
               </div>
