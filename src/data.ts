@@ -687,44 +687,48 @@ export function getInitialFutsalPosition(groupNumber: number): { x: number; y: n
 
     if (mappedGroupNumber >= 1 && mappedGroupNumber <= 5) {
       colorTheme = "blue"; // EMERE01MA (clones 56 to 60)
-      if (mappedGroupNumber === 1) { x = 46.2; y = 2.0; }
-      else if (mappedGroupNumber === 2) { x = 54.2; y = 2.0; }
-      else if (mappedGroupNumber === 3) { x = 62.2; y = 2.0; }
-      else if (mappedGroupNumber === 4) { x = 70.2; y = 2.0; }
-      else if (mappedGroupNumber === 5) { x = 78.2; y = 2.0; }
+      if (mappedGroupNumber === 1) { x = 43.0; y = 2.0; }
+      else if (mappedGroupNumber === 2) { x = 51.0; y = 2.0; }
+      else if (mappedGroupNumber === 3) { x = 59.0; y = 2.0; }
+      else if (mappedGroupNumber === 4) { x = 67.0; y = 2.0; }
+      else if (mappedGroupNumber === 5) { x = 75.0; y = 2.0; }
     }
     else if (mappedGroupNumber >= 6 && mappedGroupNumber <= 10) {
       colorTheme = "teal"; // EMERE01MB (clones 51 to 55)
-      if (mappedGroupNumber === 6) { x = 92.0; y = 19.7; }
-      else if (mappedGroupNumber === 7) { x = 92.0; y = 32.2; }
-      else if (mappedGroupNumber === 8) { x = 92.0; y = 44.7; }
-      else if (mappedGroupNumber === 9) { x = 92.0; y = 57.2; }
-      else if (mappedGroupNumber === 10) { x = 92.0; y = 69.7; }
+      if (mappedGroupNumber === 10) { x = 36.0; y = 30.0; }
+      else if (mappedGroupNumber === 9) { x = 44.0; y = 30.0; }
+      else if (mappedGroupNumber === 8) { x = 52.0; y = 30.0; }
+      else if (mappedGroupNumber === 7) { x = 60.0; y = 30.0; }
+      else if (mappedGroupNumber === 6) { x = 68.0; y = 30.0; }
     }
     else if (mappedGroupNumber >= 11 && mappedGroupNumber <= 16) {
       colorTheme = "amber"; // EMERE01MC (clones 45 to 50)
-      if (mappedGroupNumber === 11) { x = 28.2; y = 83.0; }
-      else if (mappedGroupNumber === 12) { x = 36.2; y = 83.0; }
-      else if (mappedGroupNumber === 13) { x = 44.2; y = 83.0; }
-      else if (mappedGroupNumber === 14) { x = 52.2; y = 83.0; }
-      else if (mappedGroupNumber === 15) { x = 60.2; y = 83.0; }
-      else if (mappedGroupNumber === 16) { x = 68.2; y = 83.0; }
+      if (mappedGroupNumber === 11) { x = 36.0; y = 58.0; }
+      else if (mappedGroupNumber === 12) { x = 44.0; y = 58.0; }
+      else if (mappedGroupNumber === 13) { x = 52.0; y = 58.0; }
+      else if (mappedGroupNumber === 14) { x = 60.0; y = 58.0; }
+      else if (mappedGroupNumber === 15) { x = 68.0; y = 58.0; }
+      else if (mappedGroupNumber === 16) { x = 76.0; y = 58.0; }
     }
     else if (mappedGroupNumber >= 17 && mappedGroupNumber <= 23) {
       colorTheme = "violet"; // EMERE01MD (clones 31 to 37)
-      const offset = mappedGroupNumber - 17;
-      x = 28.2 + offset * 8.0;
-      y = 42.5;
+      if (mappedGroupNumber === 23) { x = 29.2; y = 86.0; }
+      else if (mappedGroupNumber === 22) { x = 37.2; y = 86.0; }
+      else if (mappedGroupNumber === 21) { x = 45.2; y = 86.0; }
+      else if (mappedGroupNumber === 20) { x = 53.2; y = 86.0; }
+      else if (mappedGroupNumber === 19) { x = 61.2; y = 86.0; }
+      else if (mappedGroupNumber === 18) { x = 69.2; y = 86.0; }
+      else if (mappedGroupNumber === 17) { x = 77.2; y = 86.0; }
     }
     else if (mappedGroupNumber >= 24 && mappedGroupNumber <= 30) {
       colorTheme = "indigo"; // EMERE02MA (clones 38 to 44)
-      if (mappedGroupNumber === 24) { x = 1.5; y = 9.0; }
-      else if (mappedGroupNumber === 25) { x = 1.5; y = 21.5; }
-      else if (mappedGroupNumber === 26) { x = 1.5; y = 34.0; }
-      else if (mappedGroupNumber === 27) { x = 1.5; y = 46.5; }
-      else if (mappedGroupNumber === 28) { x = 1.5; y = 59.0; }
-      else if (mappedGroupNumber === 29) { x = 1.5; y = 71.5; }
-      else if (mappedGroupNumber === 30) { x = 1.5; y = 84.0; }
+      if (mappedGroupNumber === 30) { x = 4.5; y = 14.0; }
+      else if (mappedGroupNumber === 29) { x = 4.5; y = 26.0; }
+      else if (mappedGroupNumber === 28) { x = 4.5; y = 38.0; }
+      else if (mappedGroupNumber === 27) { x = 4.5; y = 50.0; }
+      else if (mappedGroupNumber === 26) { x = 4.5; y = 62.0; }
+      else if (mappedGroupNumber === 25) { x = 4.5; y = 74.0; }
+      else if (mappedGroupNumber === 24) { x = 4.5; y = 86.0; }
     }
 
     return { x, y, width: 6.8, height: 9.5, rotation: 0, colorTheme };

@@ -63,7 +63,7 @@ export default function App() {
   useEffect(() => {
     // 1. Load Groups (with migration check for new Futsal Court coords)
     const savedGroups = localStorage.getItem("mostra_cientifica_groups");
-    const hasFutsalMigration = localStorage.getItem("mostra_cientifica_futsal_v50");
+    const hasFutsalMigration = localStorage.getItem("mostra_cientifica_futsal_v57");
     if (savedGroups && hasFutsalMigration) {
       try {
         const parsed = JSON.parse(savedGroups);
@@ -80,7 +80,7 @@ export default function App() {
       }
     } else {
       setGroups(INITIAL_GROUPS);
-      localStorage.setItem("mostra_cientifica_futsal_v50", "true");
+      localStorage.setItem("mostra_cientifica_futsal_v57", "true");
     }
 
     // 2. Load Comments
@@ -105,7 +105,7 @@ export default function App() {
     }
 
     // 3. Load Interactions (claps & visits)
-    const savedInteracts = localStorage.getItem("mostra_cientifica_interactions");
+    const savedInteracts = localStorage.getItem("mostra_cientifica_interactions_v2");
     if (savedInteracts) {
       try {
         setInteractions(JSON.parse(savedInteracts));
@@ -139,7 +139,7 @@ export default function App() {
 
   useEffect(() => {
     if (Object.keys(interactions).length > 0) {
-      localStorage.setItem("mostra_cientifica_interactions", JSON.stringify(interactions));
+      localStorage.setItem("mostra_cientifica_interactions_v2", JSON.stringify(interactions));
     }
   }, [interactions]);
 
@@ -256,7 +256,7 @@ export default function App() {
         };
       });
       setInteractions(zeroed);
-      localStorage.setItem("mostra_cientifica_interactions", JSON.stringify(zeroed));
+      localStorage.setItem("mostra_cientifica_interactions_v2", JSON.stringify(zeroed));
       triggerToast("Estatísticas zeradas com sucesso!");
     }
   };
@@ -413,7 +413,7 @@ export default function App() {
   }, [selectedGroupId, interactions]);
 
   const handleShare = async () => {
-    const shareUrl = "https://fic-camar-2026-466961755010.us-east1.run.app/";
+    const shareUrl = "https://camar-sites.github.io/FIC-CAMAR-2026/";
     setIsShareModalOpen(true);
     const shareData = {
       title: "FIC CAMAR 2026 | Mapeamento",
@@ -511,14 +511,6 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-2 px-4.5 py-2.5 bg-indigo-600 hover:bg-indigo-700 active:scale-95 transition-all text-white font-semibold text-xs sm:text-sm rounded-2xl shadow-xs cursor-pointer"
-              title="Copiar link de compartilhamento público"
-            >
-              <Share2 className="h-4 w-4" />
-              <span>Compartilhar Mapa</span>
-            </button>
           </div>
         </header>
 
@@ -899,14 +891,14 @@ export default function App() {
               <div className="p-6 space-y-5 overflow-y-auto max-h-[80vh]">
                 {/* Link Box */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Link do Aplicativo:</label>
+                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Link Oficial de Compartilhamento:</label>
                   <div className="flex items-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-2xl">
                     <span className="text-xs text-slate-750 font-mono select-all truncate flex-1 leading-normal font-bold">
-                      https://fic-camar-2026-466961755010.us-east1.run.app/
+                      https://camar-sites.github.io/FIC-CAMAR-2026/
                     </span>
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText("https://fic-camar-2026-466961755010.us-east1.run.app/");
+                        navigator.clipboard.writeText("https://camar-sites.github.io/FIC-CAMAR-2026/");
                         setSuccessToast("Copiado com sucesso!");
                         setTimeout(() => setSuccessToast(null), 2500);
                       }}
@@ -918,58 +910,24 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Compatibility Notice / Safari Sandbox Explanation */}
-                <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200/50 space-y-2.5">
-                  <div className="flex items-center gap-2 text-amber-800 font-bold text-xs uppercase tracking-wider">
-                    <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
-                    <span>⚠️ Aviso sobre Cookie / Login</span>
+                {/* Status card showing everything is perfect now */}
+                <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-200/50 space-y-2.5">
+                  <div className="flex items-center gap-2 text-emerald-900 font-bold text-xs uppercase tracking-wider">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                    <span>🚀 Link de Produção Ativo</span>
                   </div>
-                  <p className="text-xs text-amber-900 leading-relaxed font-semibold">
-                    O link atual é uma prévia de desenvolvimento do Google AI Studio. 
+                  <p className="text-xs text-emerald-950 leading-relaxed">
+                    O mapa interativo está agora publicado oficialmente no <strong>GitHub Pages</strong>!
                   </p>
-                  <p className="text-xs text-amber-850 leading-relaxed">
-                    Por segurança, navegadores móveis (especialmente <strong>Safari / iPhone / iOS</strong>) podem exibir a tela cinza de <span className="underline italic">"Action required to load your app"</span>.
-                  </p>
-                  <p className="text-[11px] text-amber-800 leading-relaxed font-medium">
-                    👉 Se isso ocorrer com você ou com um visitante, basta clicar no botão <strong>"Authenticate in new window"</strong> (Autenticar) para autorizar e abrir o mapa instantaneamente.
-                  </p>
-                </div>
-
-                {/* How to deploy truly 100% public without login */}
-                <div className="p-4 bg-indigo-50 rounded-2xl border border-indigo-100/50 space-y-2.5">
-                  <div className="flex items-center gap-2 text-indigo-900 font-bold text-xs uppercase tracking-wider">
-                    <Globe className="h-4 w-4 shrink-0 text-indigo-600" />
-                    <span>🚀 Como ter um link 100% livre (Sem Login)</span>
-                  </div>
-                  <p className="text-xs text-indigo-950 leading-relaxed">
-                    Para que <strong>todos os pais e visitantes</strong> acessem diretamente pelo celular <strong>sem qualquer tela de login ou autenticação</strong>, publique o site definitivamente na nuvem!
-                  </p>
-                  <div className="bg-white/80 border border-indigo-150 p-3 rounded-xl space-y-1 text-[11px] text-indigo-900 font-medium">
+                  <div className="bg-white/80 border border-emerald-150 p-3 rounded-xl space-y-1.5 text-[11px] text-emerald-900 font-medium">
                     <p className="flex items-start gap-1.5">
-                      <span className="text-indigo-600 font-extrabold shrink-0">1.</span>
-                      <span>No canto superior direito da sua tela no <strong>Google AI Studio</strong>, clique no botão <strong>"Publish"</strong> (ou <strong>"Publicar"</strong>, ao lado do botão Share).</span>
+                      <span className="text-emerald-600 font-extrabold shrink-0">✓</span>
+                      <span><strong>Sem tela de login ou autenticação:</strong> Qualquer pai, visitante ou aluno pode acessar diretamente pelo celular.</span>
                     </p>
-                    <p className="flex items-start gap-1.5 mt-1.5">
-                      <span className="text-indigo-600 font-extrabold shrink-0">2.</span>
-                      <span>Isso gerará o link de produção definitivo que funciona instantaneamente em qualquer Android, iOS ou Windows de forma 100% pública!</span>
+                    <p className="flex items-start gap-1.5">
+                      <span className="text-emerald-600 font-extrabold shrink-0">✓</span>
+                      <span><strong>Conexão Segura (SSL/HTTPS) ativa:</strong> Carrega instantaneamente sem avisos de segurança ou privacidade no Chrome, Safari ou Edge.</span>
                     </p>
-                  </div>
-                </div>
-
-                {/* SSL Warning explanation for long names */}
-                <div className="p-4 bg-rose-50 rounded-2xl border border-rose-200/50 space-y-2.5">
-                  <div className="flex items-center gap-2 text-rose-900 font-bold text-xs uppercase tracking-wider">
-                    <AlertTriangle className="h-4 w-4 shrink-0 text-rose-600" />
-                    <span>⚠️ Resolvendo "Conexão não é particular"</span>
-                  </div>
-                  <p className="text-xs text-rose-950 leading-relaxed">
-                    Se você vir o aviso de privacidade ao abrir o link publicado, é porque o nome atual do projeto é muito longo e o Google Cloud falhou ao gerar o certificado SSL automaticamente.
-                  </p>
-                  <div className="bg-white/80 border border-rose-150 p-3 rounded-xl space-y-1.5 text-[11px] text-rose-900 font-medium">
-                    <p className="font-bold text-rose-950">Como corrigir definitivamente:</p>
-                    <p>1. Clique no título do projeto no topo esquerdo do Google AI Studio e mude para um nome curto (ex: <code>FIC CAMAR 2026</code>).</p>
-                    <p>2. Clique no botão <strong>"Publish"</strong> (Publicar) novamente.</p>
-                    <p>3. O novo link gerado será curto e abrirá perfeitamente sem nenhum aviso de segurança!</p>
                   </div>
                 </div>
 
@@ -978,7 +936,7 @@ export default function App() {
                   onClick={() => setIsShareModalOpen(false)}
                   className="w-full py-3 bg-slate-900 hover:bg-slate-850 text-white font-bold text-xs rounded-2xl transition-all active:scale-99 cursor-pointer"
                 >
-                  Entendi
+                  Fechar
                 </button>
               </div>
             </motion.div>
